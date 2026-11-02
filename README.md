@@ -1,89 +1,140 @@
-# Bella Onça — Cílios & Sobrancelhas
+# ✨ Bella Onça — Cílios & Sobrancelhas
 
-Site em Next.js com portfólio e painel administrativo.
+Website responsivo para apresentação de serviços de beleza, desenvolvido com **Next.js, TypeScript e Supabase**.
 
-## O que já vem nesta versão
+O projeto reúne uma interface elegante, portfólio interativo, integração com WhatsApp, sistema de avaliações e um painel administrativo para gerenciamento de conteúdo.
 
-- Home premium na identidade bege/dourado/marrom
-- Destaques e promoções editáveis
-- “Qual modelo combina comigo?”
-- Modelos separados em Cílios e Sobrancelhas
-- Estilo do modelo: Natural, Marcante, Alongado ou Definido
-- Antes & Depois com comparador arrastável
-- Tabela de preços por categoria
-- Galeria/portfólio por categoria
-- Sobre a profissional + certificados
-- Cuidados antes e depois
-- FAQ editável
-- Política de agendamento
-- WhatsApp com mensagens automáticas por serviço/modelo
-- Instagram, endereço e horário
-- Avaliações com estrelas, comentário e foto
-- Cliente pode enviar avaliação pelo próprio site
-- Avaliações públicas ficam pendentes até aprovação no Admin
-- Painel Admin para editar praticamente todo o conteúdo
-- Upload de imagens pelo Admin usando Supabase Storage
+🌐 **[Visualizar site publicado](https://bella-onca-website.vercel.app/)**
 
-## 1. Instalar
+---
+
+## 📖 Sobre o projeto
+
+O **Bella Onça** é uma aplicação web voltada para a apresentação de serviços de cílios e sobrancelhas.
+
+A interface utiliza uma identidade visual em tons de bege, dourado e marrom, com foco em navegação intuitiva, responsividade e uma experiência moderna.
+
+Além da área pública, o projeto possui um painel administrativo integrado ao Supabase, permitindo gerenciar conteúdos sem precisar editar o código-fonte.
+
+## 🚀 Funcionalidades
+
+### Interface e experiência
+- Design responsivo para computadores e dispositivos móveis.
+- Página inicial com destaques e promoções editáveis.
+- Ferramenta interativa **"Qual modelo combina comigo?"**.
+- Categorias independentes de cílios e sobrancelhas.
+- Classificação de modelos por estilo: Natural, Marcante, Alongado e Definido.
+- Comparador interativo de imagens de Antes & Depois.
+- Galeria de trabalhos organizada por categoria.
+- Tabela de preços por serviço.
+- Apresentação profissional e certificados.
+- Informações sobre cuidados antes e depois dos procedimentos.
+- Perguntas frequentes (FAQ) e política de agendamento.
+
+### Contato e agendamento
+- Integração com WhatsApp.
+- Mensagens pré-preenchidas conforme o serviço escolhido.
+- Links para Instagram.
+- Informações de endereço e horário de atendimento.
+
+### Sistema de avaliações
+- Avaliações de 1 a 5 estrelas.
+- Envio de comentários e fotografias.
+- Moderação das avaliações pelo administrador.
+- Publicação somente após aprovação.
+
+### Painel administrativo
+- Gerenciamento de conteúdos do site.
+- Cadastro e edição de serviços e preços.
+- Controle de destaques e promoções.
+- Gerenciamento de imagens e galerias.
+- Aprovação de avaliações.
+- Upload de arquivos pelo Supabase Storage.
+
+## 🛠️ Tecnologias
+
+| Tecnologia | Utilização |
+|---|---|
+| Next.js | Framework de desenvolvimento web |
+| React | Construção das interfaces |
+| TypeScript | Tipagem e organização do código |
+| Supabase | Banco de dados e autenticação |
+| Supabase Storage | Armazenamento de imagens |
+| Vercel | Hospedagem e deploy |
+
+## ⚙️ Instalação e execução
+
+### 1. Clonar o repositório
+
+```bash
+git clone https://github.com/Ltleandrodev/bella-onca-website.git
+cd bella-onca-website
+```
+
+### 2. Instalar dependências
 
 ```bash
 npm install
 ```
 
-No Windows, se `npm` não funcionar diretamente:
+### 3. Configurar variáveis de ambiente
 
-```bat
-npm.cmd install
-npm.cmd run dev
-```
-
-## 2. Criar o `.env.local`
-
-Copie `.env.example` para `.env.local` e preencha:
+Crie um arquivo `.env.local` utilizando o `.env.example` como referência:
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=...
 NEXT_PUBLIC_SUPABASE_ANON_KEY=...
 SUPABASE_SERVICE_ROLE_KEY=...
-ADMIN_EMAIL=email_da_admin@exemplo.com
+ADMIN_EMAIL=seu_email@exemplo.com
 ```
 
-A chave administrativa deve ficar somente no servidor. Não use `NEXT_PUBLIC_` nela.
+**Atenção:** mantenha a `SUPABASE_SERVICE_ROLE_KEY` somente no servidor e nunca publique credenciais privadas no repositório.
 
-## 3. Banco — projeto novo
+### 4. Configurar banco de dados
 
-No Supabase > SQL Editor, execute nesta ordem:
+Acesse o **SQL Editor** do Supabase e execute as migrações nesta ordem:
 
 1. `supabase/migrations/001_bella_onca.sql`
 2. `supabase/migrations/002_categories_before_after.sql`
 3. `supabase/migrations/003_portfolio_reviews_extras.sql`
 
-## 4. Banco — se você já executou 001 e 002
+Se as duas primeiras migrações já foram executadas, utilize apenas a terceira.
 
-Execute apenas:
+### 5. Configurar administrador
 
-`supabase/migrations/003_portfolio_reviews_extras.sql`
+No Supabase, acesse **Authentication → Users** e crie ou convide a conta correspondente ao e-mail configurado em `ADMIN_EMAIL`.
 
-Ela adiciona as novas áreas sem apagar o conteúdo já cadastrado.
-
-## 5. Criar a conta Admin
-
-No Supabase > Authentication > Users, crie/convide a conta com o mesmo e-mail configurado em `ADMIN_EMAIL`.
-
-## 6. Rodar
+### 6. Executar localmente
 
 ```bash
 npm run dev
 ```
 
-Site: `http://localhost:3000`
+**Aplicação:** http://localhost:3000
 
-Admin: `http://localhost:3000/admin`
+**Painel administrativo:** http://localhost:3000/admin
 
-## Avaliações enviadas pelas clientes
+## 🔐 Administração e avaliações
 
-A cliente escolhe de 1 a 5 estrelas, escreve um comentário e pode anexar uma foto. A avaliação é salva como oculta. No Admin > Avaliações, confira o conteúdo e marque `Publicado` para ela aparecer no site.
+O sistema permite que visitantes enviem avaliações com estrelas, comentários e imagens.
 
-## Observação
+As avaliações permanecem ocultas até serem aprovadas pelo administrador, que pode gerenciá-las diretamente pelo painel.
 
-Sem Supabase configurado, a home usa conteúdo de demonstração. Para o Admin salvar conteúdo, enviar fotos e receber avaliações reais, configure o Supabase.
+O painel também oferece recursos para manutenção dos serviços, conteúdos e imagens do site.
+
+## 📝 Observações
+
+- O projeto utiliza conteúdo demonstrativo quando o Supabase não está configurado.
+- O gerenciamento de dados, o envio de imagens e as avaliações dependem da configuração do Supabase.
+- As credenciais administrativas não devem ser incluídas no código-fonte.
+- O projeto é apresentado como demonstração técnica de desenvolvimento web.
+
+---
+
+### 👨‍💻 Desenvolvimento
+
+**LT Dev — Desenvolvimento Web & APIs**
+
+[GitHub](https://github.com/Ltleandrodev) • [Projeto online](https://bella-onca-website.vercel.app/)
+
+*Desenvolvido com foco em experiência do usuário, organização e funcionalidades administrativas.*
